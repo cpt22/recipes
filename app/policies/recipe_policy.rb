@@ -1,0 +1,3 @@
+class RecipePolicy < ApplicationPolicy
+
+end

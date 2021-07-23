@@ -1,0 +1,28 @@
+<%=content_tag :div, class: "d-flex flex-column justify-content-center" do%>
+  <%=content_tag :div, class: "d-flex justify-content-center" do%>
+    <%=content_tag :h2, "Log In"%>
+  <%end%>
+  <%=content_tag :div, class: "d-flex justify-content-center" do%>
+    <%=form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%=content_tag :div, class: "field pb-1" do%>
+        <%=f.label :email%>
+        <%=f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email"%>
+      <%end%>
+      <%=content_tag :div, class: "field pb-1" do%>
+        <%=f.label :password%>
+        <%=f.password_field :password, class: "form-control", autocomplete: "current-password"%>
+      <%end%>
+      <% if devise_mapping.rememberable? %>
+        <%=content_tag :div, class: "field pb-1" do%>
+          <%=f.check_box :remember_me%>
+          <%=f.label :remember_me%>
+        <%end%>
+      <%end%>
+      <%=content_tag :div, class: "d-flex flex-column justify-content-evenly actions gx-5" do%>
+        <%=f.submit "Log In", class: "btn btn-success mb-1", style: "width: 100%"%>
+        <%=button_tag "Sign Up", type: "button", class: "btn btn-primary", style: "width: 100%", onclick: "window.location.assign('#{new_user_registration_url}')"%>
+      <%end%>
+      <%=link_to "Forgot your password?", new_password_path(resource_name)%><br />
+    <%end%>
+  <%end%>
+<%end%>
