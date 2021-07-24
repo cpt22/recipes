@@ -1,27 +1,29 @@
-<%=content_tag :nav, class: "navbar navbar-expand-sm navbar-dark bg-dark" do%>
-  <%=content_tag :nav, class: "container-fluid" do%>
-    <%=link_to "TingleWeb", root_path, class: "navbar-brand"%>
-    <%=button_tag type: "button", class: "navbar-toggler", data: {bs_toggle: "collapse", bs_target: "#navbarSupportedContent"}, aria_controls: "navbarSupportedContent", aria_expanded: "false", aria_label: "Toggle navigation" do%>
-      <span class="navbar-toggler-icon"></span>
+<%=content_tag :nav, class: "navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar" do%>
+  <%=content_tag :div, class: "container" do%>
+    <%=button_tag class: "navbar-toggler", data: {"bs-toggle": "collapse", "bs-target": "#navcol-1"} do%>
+      <%=content_tag :span, "Toggle navigation", class: "visually-hidden"%>
+      <%=content_tag :span, "", class: "navbar-toggler-icon"%>
     <%end%>
-    <%=content_tag :div, class: "collapse navbar-collapse", id: "navbarSupportedContent" do%>
-      <%=content_tag :div, class: "navbar-nav me-auto mb-2 mb-lg-0" do%>
-        <%=link_to "Home", root_path, class: "nav-link"%>
-        <%=link_to "Recipes", recipes_path, class: "nav-link"%>
-        <% if user_signed_in? %>
-          <%=link_to "Ingredients", ingredients_path, class: "nav-link"%>
-          <%=link_to "Categories", categories_path, class:"nav-link" if current_user.admin? %>
-          <%=link_to "Account", account_index_path, class: "nav-link"%>
+    <%=link_to "TingleWeb", root_path, class: "navbar-brand logo"%>
+    <%=content_tag :div, id: "navcol-1", class: "collapse navbar-collapse" do%>
+      <%=content_tag :ul, class: "navbar-nav ms-auto" do%>
+        <%=content_tag :li, class: "nav-item" do%>
+          <%=link_to "Home", root_path, class: "nav-link"%>
         <%end%>
-      <%end%>
-      <%=content_tag :div, class: "navbar-nav ms-auto mb-2 mb-lg-0" do%>
-        <% unless user_signed_in? %>
-          <%=form_with url: new_user_session_path, method: :get, class: "me-auto" do |form| %>
-            <%=form.submit "Login", class: "ms-auto btn btn-success"%>
+        <%=content_tag :li, class: "nav-item" do%>
+          <%=link_to "Recipes", recipes_path, class: "nav-link"%>
+        <%end%>
+        <%if user_signed_in?%>
+          <%if current_user.admin?%>
+            <%=content_tag :li, class: "nav-item" do%>
+              <%=link_to "Ingredients", ingredients_path, class: "nav-link"%>
+            <%end%>
+            <%=content_tag :li, class: "nav-item" do%>
+              <%=link_to "Categories", categories_path, class: "nav-link"%>
+            <%end%>
           <%end%>
-        <%else%>
-          <%=form_with url: destroy_user_session_path, method: :delete, class: "me-auto" do |form| %>
-            <%=form.submit "Logout", class: "ms-auto btn btn-danger"%>
+          <%=content_tag :li, class: "nav-item" do%>
+            <%=link_to "Account", account_index_path, class: "nav-link"%>
           <%end%>
         <%end%>
       <%end%>

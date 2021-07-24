@@ -14,8 +14,11 @@
     <%=javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Load JS for custom file input fields, which cannot be included in the project since it is an npm plugin -->
     <%=javascript_include_tag 'https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js'%>
-    <!-- Load CSS from files listed in application.css -->
+    <!-- Load CSS from files listed in application.scss -->
     <%=stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<!-- Load CSS from remote sources -->
+		<%=stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i' %>
+		<%=stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css' %>
     <%#=stylesheet_link_tag 'application'%>
     <!--Use the favicon to mark a develoment environment.  The normal favicon remains in public/
      because that is where browsers will look for that icon for bookmarking.-->
@@ -27,24 +30,19 @@
     <%#=favicon_link_tag "favicons/favicon.png", rel: "apple-touch-icon-precomposed", type: "image/png"%>
     <%#=favicon_link_tag "favicons/favicon.png", rel: "apple-touch-icon", type: "image/png"%>
   <%end%>
-
-  <%=content_tag :body do%>
-    <%=render partial: "layouts/nav_bar/top_nav"%>
-    <%=content_tag :div do%>
-      <%=content_tag :div, class: "container", id: "body-container" do%>
-        <%=content_tag :div, class: "row" do%>
-          <%=content_tag :div, class: "col pt-4", id: "body-manager" do%>
-            <%=content_tag :div, id: "flash-area", class: "page-form-layout" do%>
-						  <%=content_tag :div, raw(flash[:notice]), id: "notice", class: "text-success"%>
-							<%=content_tag :div, raw(flash[:warning]), id: "warning", class: "text-warning"%>
-							<%=content_tag :div, raw(flash[:error]), id:"error", class: "text-danger"%>
-						<%end%>
-            <%=yield%>
-          <%end%>
-        <%end%>
-      <%end%>
-    <%end%>
-    <%=javascript_tag do%>
-    <%end%>
-  <%end%>
+	<%=content_tag :body do%>
+		<%=render partial: "layouts/nav_bar/top_nav"%>
+		<%=content_tag :main, class: "page" do%>
+			<%=content_tag :section, class: "clean-block clean-form dark" do%>
+				<%=content_tag :div, id: "flash-area", class: "page-form-layout" do%>
+					<%=content_tag :div, raw(flash[:notice]), id: "notice", class: "text-success"%>
+					<%=content_tag :div, raw(flash[:warning]), id: "warning", class: "text-warning"%>
+					<%=content_tag :div, raw(flash[:error]), id:"error", class: "text-danger"%>
+				<%end%>
+				<%=content_tag :div, class: "container" do%>
+					<%=yield %>
+				<%end%>
+			<%end%>
+		<%end%>
+	<%end%>
 <%end%>

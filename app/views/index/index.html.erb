@@ -1,0 +1,19 @@
+<%=form_tag form_path, method: get, remote: true, id: :search_form, do %>
+
+<%end %>
+
+<%=content_tag :div, class: "row page-body" do%>
+  <%=content_tag :div, class: "col" do%>
+    <%=content_tag :div, class: "row index-body" do%>
+      <%=content_tag :div, id: :list_div, class: "col index-section" do%>
+        <%!-- Main index page section. -->%>
+        <%yield%>
+      <%end%>
+    <%end%>
+  <%end%>
+<%end%>
+
+<%=javascript_tag do%>
+  <!-- Any javascript specified with content_for :js will be rendered here -->
+  <%yield :js%>
+<%end%>
