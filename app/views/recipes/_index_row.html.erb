@@ -1,0 +1,16 @@
+<%recipe = recipe.decorate%>
+<%=content_tag :div, class: "clean-blog-post" do%>
+  <%=content_tag :div, class: "row" do%>
+    <%=content_tag :div, class: "col-lg-5" do%>
+      <%=image_tag "image1.jpg", class: "rounded img-fluid"%>
+    <%end%>
+    <%=content_tag :div, class: "col-lg-7" do%>
+      <%=content_tag :h3, recipe.name%>
+      <%=content_tag :div, class: "info" do%>
+        <%=content_tag :span, "Test", class: "text-muted"%>
+      <%end%>
+      <%=content_tag :p, recipe.description%>
+      <%=link_to "Open Recipe", nil, class: "btn btn-outline-primary btn-sm", type: :button%>
+    <%end%>
+  <%end%>
+<%end%>

@@ -44,6 +44,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (6.1.4)
       activesupport (= 6.1.4)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (6.1.4)
       activemodel (= 6.1.4)
       activesupport (= 6.1.4)
@@ -87,6 +91,13 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    draper (4.0.2)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
+      ruby2_keywords
     erubi (1.10.0)
     ffi (1.15.3)
     globalid (0.4.2)
@@ -169,9 +180,12 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -234,6 +248,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  draper
   jbuilder (~> 2.7)
   kaminari
   listen (~> 3.3)

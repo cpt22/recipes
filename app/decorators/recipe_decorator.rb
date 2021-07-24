@@ -1,0 +1,2 @@
+class RecipeDecorator < ApplicationDecorator
+end

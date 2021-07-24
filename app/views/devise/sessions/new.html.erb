@@ -1,28 +1,26 @@
-<%=content_tag :div, class: "d-flex flex-column justify-content-center" do%>
-  <%=content_tag :div, class: "d-flex justify-content-center" do%>
-    <%=content_tag :h2, "Log In"%>
+<%@additional_section_classes = "clean-form"%>
+<%=content_tag :div, class: "block-heading" do%>
+  <%=content_tag :h2, "Log In", class: "text-info"%>
+<%end%>
+<%=form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%=render "devise/shared/error_messages", resource: resource%>
+  <%=content_tag :div, class: "mb-3" do%>
+    <%=f.label :email, "Email", class: "form-label"%>
+    <%=f.email_field :email, class: "form-control item", autofocus: true, autocomplete: "email"%>
   <%end%>
-  <%=content_tag :div, class: "d-flex justify-content-center" do%>
-    <%=form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <%=content_tag :div, class: "field pb-1" do%>
-        <%=f.label :email%>
-        <%=f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email"%>
-      <%end%>
-      <%=content_tag :div, class: "field pb-1" do%>
-        <%=f.label :password%>
-        <%=f.password_field :password, class: "form-control", autocomplete: "current-password"%>
-      <%end%>
-      <% if devise_mapping.rememberable? %>
-        <%=content_tag :div, class: "field pb-1" do%>
-          <%=f.check_box :remember_me%>
-          <%=f.label :remember_me%>
-        <%end%>
-      <%end%>
-      <%=content_tag :div, class: "d-flex flex-column justify-content-evenly actions gx-5" do%>
-        <%=f.submit "Log In", class: "btn btn-success mb-1", style: "width: 100%"%>
-        <%=button_tag "Sign Up", type: "button", class: "btn btn-primary", style: "width: 100%", onclick: "window.location.assign('#{new_user_registration_url}')"%>
-      <%end%>
-      <%=link_to "Forgot your password?", new_password_path(resource_name)%><br />
+  <%=content_tag :div, class: "mb-3" do%>
+    <%=f.label :password, "Password", class: "form-label"%>
+    <%=f.password_field :password, class: "form-control item", autocomplete: "current-password"%>
+  <%end%>
+  <%=content_tag :div, class: "mb-3" do%>
+    <%=content_tag :div, class: "form-check" do%>
+      <%=f.check_box :remember_me, class: "form-check-input"%>
+      <%=f.label :remember_me, class: "form-check-label"%>
     <%end%>
+  <%end%>
+  <%=content_tag :div, class: "d-flex flex-column justify-content-evenly actions gx-5" do%>
+    <%=f.submit "Log In", class: "btn btn-primary mb-1"%>
+    <%=link_to "Forgot your password?", new_password_path(resource_name)%>
+    <%=link_to "No account? Sign Up", new_user_registration_path%>
   <%end%>
 <%end%>
