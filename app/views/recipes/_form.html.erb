@@ -1,0 +1,32 @@
+<%=content_tag :div%>
+<%=content_tag :div, class: "block-content" do%>
+  <%=form_with model: @recipe do |f|%>
+    <%=content_tag :div, class: "d-flex flex-row justify-content-between mb-3" do%>
+      <%=content_tag :h4, "Edit Recipe"%>
+      <%=f.submit "Save", class: "btn btn-primary btn-sm"%>
+    <%end%>
+    <%=content_tag :div, class: "mb-3 d-flex gap-3" do%>
+      <%=content_tag :div, class: "flex-fill" do%>
+        <%=f.label :name, "Title", class: "form-label"%>
+        <%=f.text_field :name, class: "form-control item", autofocus: true, autocomplete: :off%>
+      <%end%>
+      <%=content_tag :div, class: "flex-fill" do%>
+        <%=f.label :creator, class: "form-label"%>
+        <%=f.text_field :creator, class: "form-control item", autocomplete: :off%>
+      <%end%>
+    <%end%>
+    <%=content_tag :div, class: "mb-3" do%>
+      <%=f.label :description, class: "form-label"%>
+      <%=f.text_field :description, class: "form-control item", autocomplete: :off%>
+    <%end%>
+    <%=content_tag :div, class: "mb-3" do%>
+    <%#=content_tag :div, class: "d-flex flex-row justify-content-between mb-3" do%>
+      <%=content_tag :div, class: "row" do%>
+      <%end%>
+    <%end%>
+    <%=content_tag :div do%>
+      <%=f.label :content%>
+      <%=f.rich_text_area :content%>
+    <%end%>
+  <%end%>
+<%end%>

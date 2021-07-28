@@ -1,0 +1,10 @@
+<%=content_tag :div%>
+<%=content_tag :div, class: "block-content padding-20" do%>
+  <%=content_tag :div, class: "d-flex flex-row justify-content-between" do%>
+    <%=content_tag :h3, "Ingredients", class: "mb-0"%>
+    <%=link_to "Create Ingredient", new_ingredient_path, class: "btn btn-primary btn-sm"%>
+  <%end%>
+  <%=content_tag :ul, class: "mt-4" do%>
+    <%=render partial: "ingredients/index_row", collection: @ingredients, as: :ingredient%>
+  <%end%>
+<%end%>

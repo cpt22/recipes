@@ -1,0 +1,12 @@
+<%=form_with model: @ingredient do |form|%>
+  <%=content_tag :div, class: "d-flex flex-row justify-content-between mb-3" do%>
+    <%=content_tag :h4, "Edit Ingredient"%>
+    <%=form.submit "Save", class: "btn btn-primary btn-sm"%>
+  <%end%>
+  <%=content_tag :div, class: "row" do%>
+    <%=content_tag :div, class: "input-group" do%>
+      <%=form.label :name, class: "input-group-text"%>
+      <%=form.text_field :name, class: "form-control", autofocus: true%>
+    <%end%>
+  <%end%>
+<%end%>

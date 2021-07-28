@@ -437,7 +437,7 @@ html,body {
     box-shadow: 0px 2px 10px rgba(0,0,0,.075);
     background-color: #fff
 }
-.clean-block .block-content {
+.clean-block .block-content,.top-content {
     box-shadow: 0px 2px 10px rgba(0,0,0,.075);
     background-color: #fff;
     padding: 40px
@@ -1477,5 +1477,13 @@ html,body {
 }
 
 .text-info {
-    color: #3b99e0 !important
+  color: #3b99e0 !important
+}
+
+.padding-20 {
+  padding: 20px !important;
+}
+
+.top-content {
+  @extend .padding-20;
 }

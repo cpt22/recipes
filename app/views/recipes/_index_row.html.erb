@@ -7,10 +7,10 @@
     <%=content_tag :div, class: "col-lg-7" do%>
       <%=content_tag :h3, recipe.name%>
       <%=content_tag :div, class: "info" do%>
-        <%=content_tag :span, "Test", class: "text-muted"%>
+        <%=content_tag :span, "From the kitchen of #{recipe.creator || recipe.user.name}", class: "text-muted"%>
       <%end%>
       <%=content_tag :p, recipe.description%>
-      <%=link_to "Open Recipe", nil, class: "btn btn-outline-primary btn-sm", type: :button%>
+      <%=link_to "Open Recipe", recipe_path(recipe), class: "btn btn-outline-primary btn-sm", type: :button%>
     <%end%>
   <%end%>
 <%end%>

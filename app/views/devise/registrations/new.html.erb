@@ -5,8 +5,12 @@
 <%=form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%=render "devise/shared/error_messages", resource: resource%>
   <%=content_tag :div, class: "mb-3" do%>
+    <%=f.label :name, "Name", class: "form-label"%>
+    <%=f.text_field :name, class: "form-control item", autofocus: true, autocomplete: "name"%>
+  <%end%>
+  <%=content_tag :div, class: "mb-3" do%>
     <%=f.label :email, "Email", class: "form-label"%>
-    <%=f.email_field :email, class: "form-control item", autofocus: true, autocomplete: "email"%>
+    <%=f.email_field :email, class: "form-control item", autocomplete: "email"%>
   <%end%>
   <%=content_tag :div, class: "mb-3" do%>
     <%=f.label :password, "Password", class: "form-label"%>

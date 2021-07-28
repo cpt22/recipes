@@ -28,6 +28,6 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    return nil
+    return [:name, :description, :creator, :content]
   end
 end

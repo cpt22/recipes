@@ -1,0 +1,9 @@
+<%=content_tag :li do%>
+  <%=content_tag :div, class: "row" do%>
+    <%=content_tag :div, category.name, class: "col"%>
+    <%=content_tag :div, class: "col-auto" do%>
+      <%=link_to "edit", edit_category_path(category)%>
+      <%=link_to "X", category_path(category), method: :delete%>
+    <%end%>
+  <%end%>
+<%end%>

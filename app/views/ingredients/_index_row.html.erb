@@ -1,0 +1,9 @@
+<%=content_tag :li do%>
+  <%=content_tag :div, class: "row" do%>
+    <%=content_tag :div, ingredient.name, class: "col"%>
+    <%=content_tag :div, class: "col-auto" do%>
+      <%=link_to "edit", edit_ingredient_path(ingredient)%>
+      <%=link_to "X", ingredient_path(ingredient), method: :delete%>
+    <%end%>
+  <%end%>
+<%end%>

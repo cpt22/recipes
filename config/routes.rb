@@ -8,14 +8,14 @@ Rails.application.routes.draw do
 
   resources :account, only: :index
 
-  resources :categories
+  resources :categories, except: :show
 
   resources :home, only: :index
 
-  resources :ingredients
+  resources :ingredients, except: :show
 
   resources :recipes
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :show, :create]
 
 end

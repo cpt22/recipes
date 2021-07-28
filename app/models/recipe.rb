@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  has_rich_text :content
+
   belongs_to :user
 
   has_many :recipe_ingredients, inverse_of: :recipe
