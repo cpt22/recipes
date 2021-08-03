@@ -28,6 +28,6 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    return [:name, :description, :creator, :content]
+    return [:name, :description, :creator, :content, {recipe_ingredients_attributes: [:id, :ingredient_name, :ingredient_id, :quantity, :unit, :_destroy]}]
   end
 end

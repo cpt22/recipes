@@ -3,7 +3,6 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
     create_table :recipes do |t|
       t.string :name, null: false
       t.text :description
-      #t.column :body, :text, limit: 200000
       t.text :creator, null: true
       t.references :user, foreign_key: true
       t.datetime :created_at, default: -> {'CURRENT_TIMESTAMP'}

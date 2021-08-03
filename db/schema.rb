@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(version: 2021_07_24_194716) do
   end
 
   create_table "recipe_ingredients", charset: "utf8mb4", force: :cascade do |t|
-    t.text "quantity", default: "'1'", null: false
-    t.text "unit", null: false
-    t.bigint "ingredient_id"
-    t.bigint "recipe_id"
+    t.text "quantity", default: "'1'"
+    t.text "unit"
+    t.bigint "ingredient_id", null: false
+    t.bigint "recipe_id", null: false
     t.index ["ingredient_id", "recipe_id"], name: "index_recipe_ingredients_on_ingredient_id_and_recipe_id", unique: true
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
@@ -131,8 +131,8 @@ ActiveRecord::Schema.define(version: 2021_07_24_194716) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "recipe_categories", "categories"
-  add_foreign_key "recipe_categories", "recipes"
+  add_foreign_key "recipe_categories", "recipes", on_delete: :cascade
   add_foreign_key "recipe_ingredients", "ingredients"
-  add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipe_ingredients", "recipes", on_delete: :cascade
   add_foreign_key "recipes", "users"
 end

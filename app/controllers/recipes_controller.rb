@@ -22,9 +22,16 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if @recipe.update(permitted_attributes(@recipe))
+    attrs = permitted_attributes(@recipe)
+    attrs[:recipe_ingredients_attributes].values.select{|v| v[:ingredient_id].blank?}.each do |v|
+      if v[:ingredient_name].present?
+        v[:ingredient_id] = Ingredient.find_or_create_by(name: v[:ingredient_name]).id
+      end
+    end
+    byebug
+    if @recipe.update(attrs)
       flash[:notice] = "Recipe updated."
-      redirect_to recipe_path(@recipe)
+      redirect_to edit_recipe_path(@recipe)
     else
       flash[:error] = "Recipe could not be updated."
       render :action => :edit

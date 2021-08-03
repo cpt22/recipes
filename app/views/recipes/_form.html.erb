@@ -12,7 +12,7 @@
       <%end%>
       <%=content_tag :div, class: "flex-fill" do%>
         <%=f.label :creator, class: "form-label"%>
-        <%=f.text_field :creator, class: "form-control item", autocomplete: :off%>
+        <%=f.text_field :creator, class: "form-control item", placeholder: current_user.name, autocomplete: :off%>
       <%end%>
     <%end%>
     <%=content_tag :div, class: "mb-3" do%>
@@ -20,7 +20,12 @@
       <%=f.text_field :description, class: "form-control item", autocomplete: :off%>
     <%end%>
     <%=content_tag :div, class: "mb-3" do%>
-    <%#=content_tag :div, class: "d-flex flex-row justify-content-between mb-3" do%>
+      <%=f.fields_for :recipe_ingredients do |i| %>
+        <%=render 'recipe_ingredient_fields', f: i%>
+      <%end%>
+      <%=link_to_add_association 'add ingredient', f, :recipe_ingredients%>
+    <%end%>
+    <%=content_tag :div, class: "mb-3" do%>
       <%=content_tag :div, class: "row" do%>
       <%end%>
     <%end%>

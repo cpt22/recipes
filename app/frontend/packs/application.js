@@ -11,6 +11,8 @@ import '../js/bootstrap_js_files.js'
 
 require("trix")
 require("@rails/actiontext")
+require("jquery")
+require("@nathanvda/cocoon")
 
 
 Rails.start()
