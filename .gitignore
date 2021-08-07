@@ -78,3 +78,5 @@ yarn-debug.log*
 .yarn-integrity
 
 config/database.yml
+
+/config/credentials/production.key

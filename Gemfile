@@ -39,6 +39,14 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'active_storage_validations'
 
+# Deployment
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rvm', '~> 0.1.2', '>= 0.1.2'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
