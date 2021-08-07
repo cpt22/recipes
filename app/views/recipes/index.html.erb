@@ -1,7 +1,7 @@
 <%@additional_section_classes = "clean-blog-list"%>
 <%=tag.div id: :search_area, class: "top-content mb-3" do%>
   <%=tag.div class: "d-flex flex-row justify-content-end" do%>
-    <%=link_to "Create Recipe", new_recipe_path, class: "btn btn-primary btn-sm"%>
+    <%=link_to "Create Recipe", new_recipe_path, class: "btn btn-primary btn-sm" if current_user.present?%>
   <%end%>
 <%end%>
 <%=tag.div class: "block-content" do%>

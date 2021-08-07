@@ -2,7 +2,11 @@
 <%=tag.div class: "clean-blog-post" do%>
   <%=tag.div class: "row" do%>
     <%=tag.div class: "col-lg-5" do%>
-      <%=image_tag "image1.jpg", class: "rounded img-fluid"%>
+      <%if recipe.main_image.attached?%>
+        <%=image_tag recipe.main_image%>
+      <%else%>
+        <%=image_tag "image1.jpg", class: "rounded img-fluid"%>
+      <%end%>
     <%end%>
     <%=tag.div class: "col-lg-7" do%>
       <%=content_tag :h3, recipe.name%>

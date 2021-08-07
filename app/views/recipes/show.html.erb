@@ -6,15 +6,24 @@
   <%end%>
   <%=tag.div class: "post_body" do%>
     <%=tag.div class: "row" do%>
-      <%=tag.h3 @recipe.name%>
+      <%=tag.h2 @recipe.name%>
       <%=tag.div class: "d-flex justify-content-between" do%>
-        <%=tag.div "From the kitchen of #{link_to(@recipe.creator, @recipe.user)}".html_safe%>
+        <%=tag.div do%>
+          <%=tag.div "From the kitchen of #{@recipe.creator}"%>
+          <%=tag.div "Published by #{link_to(@recipe.user.name, @recipe.user)}".html_safe%>
+        <%end%>
         <%=tag.div "Last updated on #{@recipe.updated_at.strftime("%-m-%-d-%Y")}"%>
       <%end%>
+    <%end%>
+
+    <%=tag.div class: "py-3" do%>
+      <%=tag.h5 "Description"%>
       <%=tag.div @recipe.description, class: "pt-2"%>
     <%end%>
 
-    <%=tag.div class: "p-3" do%>
+
+    <%=tag.div class: "py-3" do%>
+      <%=tag.h5 "Ingredients"%>
       <%=tag.ul do%>
         <%@recipe.recipe_ingredients.includes(:ingredient).each do |ri|%>
           <%=tag.li "#{ri.quantity} #{ri.unit + " of " if ri.unit.present?} #{ri.ingredient.name}"%>
