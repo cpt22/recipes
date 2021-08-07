@@ -50,11 +50,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-<<<<<<< HEAD
-  database: tingleweb
-=======
-  database: tingleweb_recipes
->>>>>>> bc07ab6da21e2e85b6f53e2a55061ec2c4869b4d
+  #database: tingleweb
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
