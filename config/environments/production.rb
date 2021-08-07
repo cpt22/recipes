@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   config.require_master_key = true
   # Settings specified here will take precedence over those in config/application.rb.
-  config.secret_key_base = Rails.application.secrets.secret_key_base
+  config.secret_key_base = Rails.application.credentials.dig(:secret_key_base)
   # Code is not reloaded between requests.
   config.cache_classes = true
 
