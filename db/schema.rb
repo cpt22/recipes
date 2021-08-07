@@ -90,11 +90,10 @@ ActiveRecord::Schema.define(version: 2021_07_24_194716) do
   end
 
   create_table "recipe_ingredients", charset: "utf8mb4", force: :cascade do |t|
-    t.text "quantity", default: "'1'"
+    t.text "quantity"
     t.text "unit"
     t.bigint "ingredient_id", null: false
     t.bigint "recipe_id", null: false
-    t.index ["ingredient_id", "recipe_id"], name: "index_recipe_ingredients_on_ingredient_id_and_recipe_id", unique: true
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end

@@ -1,9 +1,9 @@
 <%@additional_section_classes = "clean-blog-list"%>
-<%=content_tag :div, id: :search_area, class: "top-content mb-3" do%>
-  <%=content_tag :div, class: "d-flex flex-row justify-content-end" do%>
+<%=tag.div id: :search_area, class: "top-content mb-3" do%>
+  <%=tag.div class: "d-flex flex-row justify-content-end" do%>
     <%=link_to "Create Recipe", new_recipe_path, class: "btn btn-primary btn-sm"%>
   <%end%>
 <%end%>
-<%=content_tag :div, class: "block-content" do%>
+<%=tag.div class: "block-content" do%>
   <%=render partial: "recipes/index_row", collection: @recipes, as: :recipe%>
 <%end%>

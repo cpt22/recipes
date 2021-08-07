@@ -8,7 +8,12 @@ class Recipe < ApplicationRecord
   has_many :recipe_categories, inverse_of: :recipe, dependent: :destroy
   has_many :categories, through: :recipe_categories
 
-  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
+  has_one_attached :main_image
+
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
+
+  validates :name, :description, presence: true
+  validates :main_image, content_type: [:png, :jpg, :jpeg]
 
   audited
 end

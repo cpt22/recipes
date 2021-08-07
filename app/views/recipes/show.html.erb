@@ -1,6 +1,30 @@
-<%=content_tag :div, class: "block-content" do%>
-  <%=content_tag :div, class: "post-image" do%>
+<%=tag.div class: "block-content" do%>
+  <%if @recipe.main_image.attached?%>
+    <%=tag.div class: "post-image" do%>
+      <%=image_tag @recipe.main_image%>
+    <%end%>
   <%end%>
-  <%=content_tag :div, class: "post_body" do%>
+  <%=tag.div class: "post_body" do%>
+    <%=tag.div class: "row" do%>
+      <%=tag.h3 @recipe.name%>
+      <%=tag.div class: "d-flex justify-content-between" do%>
+        <%=tag.div "From the kitchen of #{link_to(@recipe.creator, @recipe.user)}".html_safe%>
+        <%=tag.div "Last updated on #{@recipe.updated_at.strftime("%-m-%-d-%Y")}"%>
+      <%end%>
+      <%=tag.div @recipe.description, class: "pt-2"%>
+    <%end%>
+
+    <%=tag.div class: "p-3" do%>
+      <%=tag.ul do%>
+        <%@recipe.recipe_ingredients.includes(:ingredient).each do |ri|%>
+          <%=tag.li "#{ri.quantity} #{ri.unit + " of " if ri.unit.present?} #{ri.ingredient.name}"%>
+        <%end%>
+      <%end%>
+    <%end%>
+
+    <%=tag.div class: "row" do%>
+      <%=tag.h5 "Instructions"%>
+      <%=@recipe.content%>
+    <%end%>
   <%end%>
 <%end%>

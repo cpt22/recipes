@@ -1,37 +1,52 @@
-<%=content_tag :div%>
-<%=content_tag :div, class: "block-content" do%>
+<%=tag.div%>
+<%=tag.div class: "block-content" do%>
   <%=form_with model: @recipe do |f|%>
-    <%=content_tag :div, class: "d-flex flex-row justify-content-between mb-3" do%>
+    <%=tag.div class: "d-flex flex-row justify-content-between mb-3" do%>
       <%=content_tag :h4, "Edit Recipe"%>
       <%=f.submit "Save", class: "btn btn-primary btn-sm"%>
     <%end%>
-    <%=content_tag :div, class: "mb-3 d-flex gap-3" do%>
-      <%=content_tag :div, class: "flex-fill" do%>
+    <%=tag.div class: "mb-3 d-flex gap-3" do%>
+      <%=tag.div class: "flex-fill" do%>
         <%=f.label :name, "Title", class: "form-label"%>
         <%=f.text_field :name, class: "form-control item", autofocus: true, autocomplete: :off%>
       <%end%>
-      <%=content_tag :div, class: "flex-fill" do%>
+      <%=tag.div class: "flex-fill" do%>
         <%=f.label :creator, class: "form-label"%>
         <%=f.text_field :creator, class: "form-control item", placeholder: current_user.name, autocomplete: :off%>
       <%end%>
     <%end%>
-    <%=content_tag :div, class: "mb-3" do%>
+    <%=tag.div class: "mb-3" do%>
       <%=f.label :description, class: "form-label"%>
-      <%=f.text_field :description, class: "form-control item", autocomplete: :off%>
+      <%=f.text_area :description, class: "form-control item", autocomplete: :off%>
     <%end%>
-    <%=content_tag :div, class: "mb-3" do%>
-      <%=f.fields_for :recipe_ingredients do |i| %>
-        <%=render 'recipe_ingredient_fields', f: i%>
+    <%=tag.div class: "mb-3" do%>
+      <%=tag.div class: "row" do%>
+        <%=tag.div class: "col-12 col-md-7" do%>
+          <%=render partial: "ingredients_section", locals: {f: f}%>
+        <%end%>
+        <%=tag.div class: "col-12 col-md-5" do%>
+          <%=tag.div class: "mb-3" do%>
+            <%=tag.div class: "d-flex justify-content-between" do%>
+              <%=tag.div class: "mt-auto" do%>
+                <%=f.label :main_image, "Image", class: "form-label"%>
+              <%end%>
+              <%if @recipe.main_image.attached?%>
+                <%=image_tag @recipe.main_image, class: "preview"%>
+              <%end%>
+            <%end%>
+            <%=f.file_field :main_image, class: "form-control item", accept:'image/*', data: { max_file_size: 10.megabytes }%>
+          <%end%>
+          <%#=render partial: "categories_section", locals: {f: f}%>
+        <%end%>
       <%end%>
-      <%=link_to_add_association 'add ingredient', f, :recipe_ingredients%>
     <%end%>
-    <%=content_tag :div, class: "mb-3" do%>
-      <%=content_tag :div, class: "row" do%>
+    <%=tag.div class: "mb-3" do%>
+      <%=tag.div class: "row" do%>
       <%end%>
     <%end%>
-    <%=content_tag :div do%>
+    <%=tag.div do%>
       <%=f.label :content%>
-      <%=f.rich_text_area :content%>
+      <%=f.rich_text_area :content, class: "form-control large-height"%>
     <%end%>
   <%end%>
 <%end%>

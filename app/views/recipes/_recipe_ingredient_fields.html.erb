@@ -1,7 +1,22 @@
-<div class='nested-fields'>
-    <div class="field">
-      <%= f.label :ingredient_name %>
-      <%= f.text_field :ingredient_name %>
-    </div>
-    <%#= link_to_remove_association "remove ingredient", f, :recipe_ingredients %>
-  </div>
+<%=tag.div class: "row form-group p-1 nested-fields" do%>
+  <%=tag.div class: "col-2 field" do%>
+    <%=f.text_field :quantity, class: "form-control", placeholder: "Qty", value: (f.object.quantity || 1)%>
+  <%end%>
+  <%=tag.div class: "col-2 field" do%>
+    <%=f.text_field :unit, class: "form-control", placeholder: "Unit"%>
+  <%end%>
+  <%=tag.div class: "col-7 field" do%>
+    <%=f.select :ingredient_name, Ingredient.all.order("name ASC").collect(&:name), {}, class: "ingredient-name-input form-control", placeholder: "Ingredient", style: "width: 100%"%>
+  <%end%>
+  <%=tag.div class: "col-1 field" do%>
+    <%=link_to_remove_association fa_icon("trash"), f, class: "text-danger", id: "x-icon"%>
+  <%end%>
+<%end%>
+<%=javascript_tag do%>
+$(document).ready(function () {
+  console.log($('.ingredient-name-input').html());
+  $('.ingredient-name-input').select2({
+    tags: true
+  });
+});
+<%end%>

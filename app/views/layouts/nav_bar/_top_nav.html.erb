@@ -1,11 +1,11 @@
 <%=content_tag :nav, class: "navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar" do%>
-  <%=content_tag :div, class: "container" do%>
+  <%=tag.div class: "container" do%>
     <%=button_tag class: "navbar-toggler", data: {"bs-toggle": "collapse", "bs-target": "#navcol-1"} do%>
       <%=content_tag :span, "Toggle navigation", class: "visually-hidden"%>
       <%=content_tag :span, "", class: "navbar-toggler-icon"%>
     <%end%>
     <%=link_to "Tingle Recipes", root_path, class: "navbar-brand logo"%>
-    <%=content_tag :div, id: "navcol-1", class: "collapse navbar-collapse" do%>
+    <%=tag.div id: "navcol-1", class: "collapse navbar-collapse" do%>
       <%=content_tag :ul, class: "navbar-nav ms-auto" do%>
         <%=content_tag :li, class: "nav-item" do%>
           <%=link_to "Home", root_path, class: "nav-link"%>
@@ -17,7 +17,7 @@
           <%if current_user.admin?%>
             <%=content_tag :li, class: "nav-item dropdown" do%>
               <%=link_to "Admin", "#", data: {"bs-toggle": "dropdown"}, class: "nav-link dropdown-toggle"%>
-              <%=content_tag :div, class:"dropdown-menu" do%>
+              <%=tag.div class:"dropdown-menu" do%>
                 <%=link_to("Ingredients", ingredients_path, class: "dropdown-item")%>
                 <%=link_to("Categories", categories_path, class: "dropdown-item")%>
               <%end%>

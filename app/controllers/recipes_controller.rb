@@ -1,8 +1,13 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :delete]
   before_action :authorize_recipes
 
   def index
     @recipes = Recipe.all
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
   end
 
   def new
@@ -22,14 +27,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    attrs = permitted_attributes(@recipe)
-    attrs[:recipe_ingredients_attributes].values.select{|v| v[:ingredient_id].blank?}.each do |v|
-      if v[:ingredient_name].present?
-        v[:ingredient_id] = Ingredient.find_or_create_by(name: v[:ingredient_name]).id
-      end
-    end
-    byebug
-    if @recipe.update(attrs)
+    if @recipe.update(permitted_attributes(@recipe))
       flash[:notice] = "Recipe updated."
       redirect_to edit_recipe_path(@recipe)
     else

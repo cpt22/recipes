@@ -5,8 +5,8 @@ const globImporter = require('node-sass-glob-importer');
 
 environment.plugins.append('Provide',
     new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
+        //$: 'jquery/src/jquery',
+        //jQuery: 'jquery/src/jquery',
         Popper: ['popper.js', 'default']
     })
     );
@@ -17,5 +17,6 @@ environment
     .use
     .find(item => item.loader === 'sass-loader')
     .options = { sassOptions: { importer: globImporter() } };
+
 
 module.exports = environment

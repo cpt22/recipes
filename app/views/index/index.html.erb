@@ -2,10 +2,10 @@
 
 <%end %>
 
-<%=content_tag :div, class: "row page-body" do%>
-  <%=content_tag :div, class: "col" do%>
-    <%=content_tag :div, class: "row index-body" do%>
-      <%=content_tag :div, id: :list_div, class: "col index-section" do%>
+<%=tag.div class: "row page-body" do%>
+  <%=tag.div class: "col" do%>
+    <%=tag.div class: "row index-body" do%>
+      <%=tag.div id: :list_div, class: "col index-section" do%>
         <%!-- Main index page section. -->%>
         <%yield%>
       <%end%>

@@ -1,6 +1,6 @@
-<%=content_tag :div%>
-<%=content_tag :div, class: "block-content padding-20" do%>
-  <%=content_tag :div, class: "d-flex flex-row justify-content-between" do%>
+<%=tag.div%>
+<%=tag.div class: "block-content padding-20" do%>
+  <%=tag.div class: "d-flex flex-row justify-content-between" do%>
     <%=content_tag :h3, "Categories", class: "mb-0"%>
     <%=link_to "Create Category", new_category_path, class: "btn btn-primary btn-sm"%>
   <%end%>

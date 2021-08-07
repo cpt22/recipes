@@ -34,6 +34,10 @@ gem 'audited', '~> 4.9'
 gem 'kaminari'
 gem 'draper'
 gem 'cocoon'
+gem 'select2-rails'
+gem 'jquery-rails'
+gem 'font-awesome-rails'
+gem 'active_storage_validations'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
