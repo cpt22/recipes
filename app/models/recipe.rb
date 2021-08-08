@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
 
-  validates :name, :description, presence: true
+  validates :name, presence: true
   validates :main_image, content_type: [:png, :jpg, :jpeg]
 
   audited
