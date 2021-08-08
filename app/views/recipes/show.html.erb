@@ -20,16 +20,18 @@
       <%end%>
     <%end%>
 
-    <%=tag.div class: "py-3" do%>
-      <%=tag.h5 "Description"%>
-      <%=tag.div @recipe.description, class: "pt-2"%>
+    <%if @recipe.description.present?%>
+      <%=tag.div class: "py-3" do%>
+        <%=tag.h5 "Description"%>
+        <%=tag.div @recipe.description, class: "pt-2"%>
+      <%end%>
     <%end%>
 
     <%=tag.div class: "py-3" do%>
       <%=tag.h5 "Ingredients"%>
       <%=tag.ul do%>
         <%@recipe.recipe_ingredients.includes(:ingredient).each do |ri|%>
-          <%=tag.li "#{ri.quantity} #{ri.unit + " of " if ri.unit.present?} #{ri.ingredient.name}"%>
+          <%=tag.li "<b>#{ri.quantity}</b> #{ri.unit + " of " if ri.unit.present?} #{ri.ingredient.name}".html_safe%>
         <%end%>
       <%end%>
     <%end%>
