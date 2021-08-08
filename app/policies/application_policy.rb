@@ -34,6 +34,18 @@ class ApplicationPolicy
     false
   end
 
+  def user_present?
+    return user.present?
+  end
+
+  def standard_access?
+    return user_present? && user.standard_access?
+  end
+
+  def admin_access?
+    return user_present? && user.admin_access?
+  end
+
   class Scope
     attr_reader :user, :scope
 

@@ -13,6 +13,6 @@ class User < ApplicationRecord
   end
 
   def standard_access?
-    return self.user? || self.admin?
+    return User.access_levels[access_level] >= User.access_levels[:user]
   end
 end

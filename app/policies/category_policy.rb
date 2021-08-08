@@ -1,10 +1,10 @@
 class CategoryPolicy < ApplicationPolicy
   def index?
-    return user.admin_access?
+    return admin_access?
   end
 
   def create?
-    return user.admin_access?
+    return admin_access?
   end
 
   def new?
@@ -12,7 +12,7 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def update?
-    return user.admin_access?
+    return admin_access?
   end
 
   def edit?
@@ -20,7 +20,7 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def destroy?
-    return user.admin_access?
+    return admin_access?
   end
 
   def permitted_attributes

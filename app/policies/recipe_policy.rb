@@ -8,7 +8,7 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def create?
-    return user.standard_access?
+    return standard_access?
   end
 
   def new?
@@ -16,7 +16,7 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def update?
-    return (user == record.user) || user.admin_access?
+    return user_present? && ((user == record.user) || user.admin_access?)
   end
 
   def edit?
@@ -24,11 +24,11 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def destroy?
-    return (user == record.user) || user.admin_access?
+    return user_present? && ((user == record.user) || user.admin_access?)
   end
 
   def permitted_attributes
-    return [:name, :description, :creator, :content, :main_image,
+    return [:name, :description, :creator, :content, :main_image, [:categories => []],
       {recipe_ingredients_attributes: [:id, :ingredient_name, :quantity, :unit, :_destroy]}]
   end
 end

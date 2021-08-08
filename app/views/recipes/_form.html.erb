@@ -1,5 +1,7 @@
 <%=tag.div%>
 <%=tag.div class: "block-content" do%>
+  <%=tag.div class: "d-flex justify-content-end" do%>
+  <%end%>
   <%=form_with model: @recipe do |f|%>
     <%=tag.div class: "d-flex flex-row justify-content-between mb-3" do%>
       <%=content_tag :h4, "Edit Recipe"%>
@@ -36,17 +38,23 @@
             <%end%>
             <%=f.file_field :main_image, class: "form-control item", accept:'image/*', data: { max_file_size: 10.megabytes }%>
           <%end%>
-          <%#=render partial: "categories_section", locals: {f: f}%>
+          <%=tag.div class: "mb-3" do%>
+            <%=tag.div class: "row" do%>
+              <%=f.label :categories, class: "form-label"%>
+              <%=f.select :categories, Category.all.order(:name).collect{|c| [c.name, c.id]}, {selected: @recipe.categories.collect(&:id)}, class: "form-control", id: :categories, multiple: true%>
+            <%end%>
+          <%end%>
         <%end%>
       <%end%>
     <%end%>
-    <%=tag.div class: "mb-3" do%>
-      <%=tag.div class: "row" do%>
-      <%end%>
-    <%end%>
+
     <%=tag.div do%>
       <%=f.label :content%>
       <%=f.rich_text_area :content, class: "form-control large-height"%>
     <%end%>
   <%end%>
+<%end%>
+
+<%=javascript_tag do%>
+  $("#categories").select2();
 <%end%>

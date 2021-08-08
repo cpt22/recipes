@@ -33,17 +33,21 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if @recipe.update(permitted_attributes(@recipe))
+    begin
+      attrs = permitted_attributes(@recipe)
+      attrs[:categories] = attrs[:categories].reject{|c| c.blank?}.collect{|c| Category.find(c)}
+      @recipe.update!(attrs)
       flash[:notice] = "Recipe updated."
       redirect_to edit_recipe_path(@recipe)
-    else
+    rescue Exception
       flash[:error] = "Recipe could not be updated."
       render :action => :edit
     end
   end
 
-  def delete
+  def destroy
     begin
+      @recipe.destroy!
       flash[:notice] = "The recipe was deleted."
     rescue Exception => e
       flash[:error] = "The recipe could not be deleted. #{e.to_s}"

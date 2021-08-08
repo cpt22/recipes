@@ -1,18 +1,18 @@
 class IngredientPolicy < ApplicationPolicy
   def index?
-    return user.admin_access?
+    return admin_access?
   end
 
   def create?
-    return user.standard_access?
+    return standard_access?
   end
 
   def new?
-    return user.standard_access?
+    return create?
   end
 
   def update?
-    return user.admin_access?
+    return admin_access?
   end
 
   def edit?
@@ -20,7 +20,7 @@ class IngredientPolicy < ApplicationPolicy
   end
 
   def destroy?
-    return user.admin_access?
+    return admin_access?
   end
 
   def permitted_attributes

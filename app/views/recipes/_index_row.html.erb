@@ -1,5 +1,6 @@
 <%recipe = recipe.decorate%>
-<%=tag.div class: "clean-blog-post" do%>
+<%#=tag.div class: "clean-blog-post recipe-index-row", onclick: "window.location.assign('#{recipe_path(recipe)}')", style: "cursor: pointer;" do%>
+<%=tag.div class: "clean-blog-post recipe-index-row", data: {id: recipe.id} do%>
   <%=tag.div class: "row" do%>
     <%=tag.div class: "col-lg-5" do%>
       <%if recipe.main_image.attached?%>
@@ -14,7 +15,6 @@
         <%=content_tag :span, "From the kitchen of #{recipe.creator || recipe.user.name}", class: "text-muted"%>
       <%end%>
       <%=content_tag :p, recipe.description%>
-      <%=link_to "Open Recipe", recipe_path(recipe), class: "btn btn-outline-primary btn-sm", type: :button%>
     <%end%>
   <%end%>
 <%end%>
