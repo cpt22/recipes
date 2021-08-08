@@ -1,10 +1,10 @@
 <%=tag.div id: :ingredients_container do%>
   <%=tag.div class: "row" do%>
     <%=tag.div class:"col-11" do%>
-      <%=tag.h4 "Ingredients"%>
+      <%=tag.h4 "Ingredients", data: {"bs-toggle": :tooltip, "bs-placement": :bottom}, title: "hi"%>
     <%end%>
     <%=tag.div class: "col-1" do%>
-      <%=link_to_add_association fa_icon("plus", class: "text-success"), f, :recipe_ingredients, class: 'button is-light', "data-association-insertion-method": :after, "data-association-insertion-node": "#ingredients_container"%>
+      <%=link_to_add_association fa_icon("plus", class: "text-success"), f, :recipe_ingredients, class: 'button is-light', "data-association-insertion-method": :append, "data-association-insertion-node": "#ingredients_container"%>
     <%end%>
   <%end%>
   <%=f.fields_for :recipe_ingredients do |recipe_ingredient| %>

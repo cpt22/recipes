@@ -20,7 +20,12 @@ class Recipe < ApplicationRecord
 
   ITEMS_PER_PAGE = 25.freeze
 
-
   paginates_per ITEMS_PER_PAGE
 
+
+  def search_data
+    attributes.merge(
+      category_name: categories.map(&:name)
+    )
+  end
 end

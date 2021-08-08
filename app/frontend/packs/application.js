@@ -6,14 +6,14 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import jquery from 'jquery';
-window.jQuery = jquery;
-window.$ = jquery;
 import '../js/bootstrap_js_files.js'
 import '../select2/select2.min'
 import "@fortawesome/fontawesome-free/css/all"
 
+global.$ = require("jquery")
 require("trix")
+require("jquery")
+require("jquery-ui-bundle")
 require("@rails/actiontext")
 require("@nathanvda/cocoon")
 

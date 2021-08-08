@@ -2,8 +2,8 @@
   <%=tag.div class: "row" do%>
     <%=tag.div category.name, class: "col"%>
     <%=tag.div class: "col-auto" do%>
-      <%=link_to "edit", edit_category_path(category)%>
-      <%=link_to "X", category_path(category), method: :delete%>
+      <%=link_to(fa_icon("edit"), edit_category_path(category))if policy(category).edit?%>
+      <%=link_to(fa_icon("trash"), category_path(category), method: :delete)if policy(category).destroy?%>
     <%end%>
   <%end%>
 <%end%>

@@ -5,8 +5,14 @@ class RecipesController < ApplicationController
   def index
     items_per_page = Recipe::ITEMS_PER_PAGE
     page = params[:page] || 1
-    if params[:search].present?
-      @recipes = Recipe.search(params[:search], fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
+    search = params[:search]
+    category = Category.find(params[:category]).try(:name) if params[:category].present?
+    if search.present? && category.present?
+      @recipes = Recipe.search(search, where: {category_name: category}, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
+    elsif search.present?
+      @recipes = Recipe.search(search, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
+    elsif category.present?
+      @recipes = Recipe.search("*", where: {category_name: category}, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
     else
       @recipes = Recipe.all.page(page)
     end
@@ -20,7 +26,9 @@ class RecipesController < ApplicationController
   end
 
   def create
-    if @recipe.update(permitted_attributes(Recipe))
+    attrs = permitted_attributes(Recipe)
+    attrs[:categories] = normalize_categories attrs[:categories]
+    if @recipe.update(attrs)
       flash[:notice] = "Recipe created."
       redirect_to recipes_path
     else
@@ -33,9 +41,9 @@ class RecipesController < ApplicationController
   end
 
   def update
+    attrs = permitted_attributes(@recipe)
+    attrs[:categories] = normalize_categories attrs[:categories]
     begin
-      attrs = permitted_attributes(@recipe)
-      attrs[:categories] = attrs[:categories].reject{|c| c.blank?}.collect{|c| Category.find(c)}
       @recipe.update!(attrs)
       flash[:notice] = "Recipe updated."
       redirect_to edit_recipe_path(@recipe)
@@ -66,4 +74,13 @@ private
     end
     authorize @recipe || Recipe
   end
+
+  ##
+  # Replace category IDs with the actual +Category+ objects.
+  # [attributes] (List of String) The list of IDs to convert to +Category+ objects.
+  # Returns a list of +Category+ objects
+  def normalize_categories(attributes)
+    return attributes.reject{|c| c.blank?}.collect{|c| Category.find(c)}
+  end
+
 end

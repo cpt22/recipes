@@ -39,10 +39,8 @@
             <%=f.file_field :main_image, class: "form-control item", accept:'image/*', data: { max_file_size: 10.megabytes }%>
           <%end%>
           <%=tag.div class: "mb-3" do%>
-            <%=tag.div class: "row" do%>
-              <%=f.label :categories, class: "form-label"%>
-              <%=f.select :categories, Category.all.order(:name).collect{|c| [c.name, c.id]}, {selected: @recipe.categories.collect(&:id)}, class: "form-control", id: :categories, multiple: true%>
-            <%end%>
+            <%=f.label :categories, class: "form-label"%>
+            <%=f.select :categories, Category.all.order(:name).collect{|c| [c.name, c.id]}, {selected: @recipe.categories.collect(&:id)}, class: "form-select", id: :categories, multiple: true%>
           <%end%>
         <%end%>
       <%end%>
@@ -56,5 +54,7 @@
 <%end%>
 
 <%=javascript_tag do%>
-  $("#categories").select2();
+  $("#categories").select2({
+    theme: "bootstrap-5"
+  });
 <%end%>

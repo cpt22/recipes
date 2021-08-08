@@ -2,8 +2,8 @@
   <%=tag.div class: "row" do%>
     <%=tag.div ingredient.name, class: "col"%>
     <%=tag.div class: "col-auto" do%>
-      <%=link_to "edit", edit_ingredient_path(ingredient)%>
-      <%=link_to "X", ingredient_path(ingredient), method: :delete%>
+      <%=link_to(fa_icon("edit"), edit_ingredient_path(ingredient))if policy(ingredient).edit?%>
+      <%=link_to(fa_icon("trash"), ingredient_path(ingredient), method: :delete)if policy(ingredient).destroy?%>
     <%end%>
   <%end%>
 <%end%>
