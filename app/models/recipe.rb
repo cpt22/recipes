@@ -16,4 +16,11 @@ class Recipe < ApplicationRecord
   validates :main_image, content_type: [:png, :jpg, :jpeg]
 
   audited
+  searchkick
+
+  ITEMS_PER_PAGE = 25.freeze
+
+
+  paginates_per ITEMS_PER_PAGE
+
 end

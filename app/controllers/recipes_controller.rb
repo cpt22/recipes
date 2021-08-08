@@ -3,7 +3,13 @@ class RecipesController < ApplicationController
   before_action :authorize_recipes
 
   def index
-    @recipes = Recipe.all
+    items_per_page = Recipe::ITEMS_PER_PAGE
+    page = params[:page] || 1
+    if params[:search].present?
+      @recipes = Recipe.search(params[:search], fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
+    else
+      @recipes = Recipe.all.page(page)
+    end
   end
 
   def show

@@ -1064,7 +1064,7 @@ html,body {
 .clean-block .clean-blog-post:not(:first-of-type) {
   padding-top: 20px
 }
-.clean-block .clean-blog-post:not(:last-of-type) {
+.clean-block .clean-blog-post:not(.clean-blog-post:last-of-type) {
   @extend .border-bottom;
 }
 .clean-block.clean-post {

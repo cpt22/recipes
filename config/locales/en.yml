@@ -30,4 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  views:
+    pagination:
+      next: '<i class="fas fa-angle-right"></i>'
+      previous: '<i class="fas fa-angle-left"></i>'
+      first: '<i class="fas fa-angle-double-left"></i>'
+      last: '<i class="fas fa-angle-double-right"></i>'
   hello: "Hello world"

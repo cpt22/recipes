@@ -1,9 +1,25 @@
 <%@additional_section_classes = "clean-blog-list"%>
 <%=tag.div id: :search_area, class: "top-content mb-3" do%>
-  <%=tag.div class: "d-flex flex-row justify-content-end" do%>
-    <%=link_to "Create Recipe", new_recipe_path, class: "btn btn-primary btn-sm" if current_user.present?%>
+
+    <%=tag.div class: "form-group flex-fill flex-nowrap" do%>
+      <%=form_with url: "/recipes", method: 'get', remote: false do |search_form|%>
+        <%=tag.div class: "d-flex flex-row gap-3" do%>
+          <%=search_form.text_field :search, class: "form-control flex-fill", placeholder: "Search for recipes", value: params[:search], autofocus: true%>
+          <%=search_form.submit "Search", class: "btn btn-primary"%>
+          <%=link_to "Create Recipe", new_recipe_path, class: "btn btn-primary text-nowrap"%>
+      <%end%>
+    <%end%>
   <%end%>
 <%end%>
 <%=tag.div class: "block-content" do%>
-  <%=render partial: "recipes/index_row", collection: @recipes, as: :recipe%>
+  <%if @recipes.count > 0%>
+    <%=render partial: "recipes/index_row", collection: @recipes, as: :recipe%>
+  <%else%>
+    <%=tag.h3 "No Recipes Found"%>
+  <%end%>
+  <%=tag.footer class: "pagination-footer" do%>
+    <%=tag.div class: "d-flex flex-row-reverse" do%>
+      <%=paginate @recipes%>
+    <%end%>
+  <%end%>
 <%end%>

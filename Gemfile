@@ -38,6 +38,8 @@ gem 'select2-rails'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'active_storage_validations'
+gem 'searchkick'
+
 
 # Deployment
 gem 'capistrano', '~> 3.11'
