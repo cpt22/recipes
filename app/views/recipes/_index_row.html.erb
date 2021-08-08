@@ -1,15 +1,14 @@
 <%recipe = recipe.decorate%>
+<%is_image_attached = recipe.main_image.attached?%>
 <%#=tag.div class: "clean-blog-post recipe-index-row", onclick: "window.location.assign('#{recipe_path(recipe)}')", style: "cursor: pointer;" do%>
 <%=tag.div class: "clean-blog-post recipe-index-row", data: {id: recipe.id} do%>
   <%=tag.div class: "row" do%>
-    <%=tag.div class: "col-lg-5" do%>
-      <%if recipe.main_image.attached?%>
-        <%=image_tag recipe.main_image%>
-      <%else%>
-        <%=image_tag "image1.jpg", class: "rounded img-fluid"%>
+    <%if is_image_attached%>
+      <%=tag.div class: "col-12 col-sm-2" do%>
+        <%=image_tag recipe.main_image, class: "rounded img-fluid"%>
       <%end%>
     <%end%>
-    <%=tag.div class: "col-lg-7" do%>
+    <%=tag.div class: "col-12 #{"col-sm-10" if is_image_attached}" do%>
       <%=content_tag :h3, recipe.name%>
       <%=tag.div class: "info" do%>
         <%=content_tag :span, "From the kitchen of #{recipe.creator || recipe.user.name}", class: "text-muted"%>

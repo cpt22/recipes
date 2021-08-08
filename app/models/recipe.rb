@@ -18,7 +18,7 @@ class Recipe < ApplicationRecord
   audited
   searchkick
 
-  ITEMS_PER_PAGE = 25.freeze
+  ITEMS_PER_PAGE = 15.freeze
 
   paginates_per ITEMS_PER_PAGE
 
