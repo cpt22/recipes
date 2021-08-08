@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
     attrs[:categories] = normalize_categories attrs[:categories]
     if @recipe.update(attrs)
       flash[:notice] = "Recipe created."
-      redirect_to recipes_path
+      redirect_to recipe_path(@recipe)
     else
       flash[:error] = "Recipe could not be created."
       render :action => :new
@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
     begin
       @recipe.update!(attrs)
       flash[:notice] = "Recipe updated."
-      redirect_to edit_recipe_path(@recipe)
+      redirect_to recipe_path(@recipe)
     rescue Exception
       flash[:error] = "Recipe could not be updated."
       render :action => :edit
