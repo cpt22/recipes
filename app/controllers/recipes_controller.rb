@@ -6,13 +6,14 @@ class RecipesController < ApplicationController
     items_per_page = Recipe::ITEMS_PER_PAGE
     page = params[:page] || 1
     search = params[:search]
-    category = Category.find(params[:category]).try(:name) if params[:category].present?
+    category = Category.find(params[:category]) if params[:category].present?
+    category_name = category.try(:name)
     if search.present? && category.present?
-      @recipes = Recipe.search(search, where: {category_name: category}, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
+      @recipes = Recipe.search(search, where: {category_name: category_name}, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
     elsif search.present?
       @recipes = Recipe.search(search, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
     elsif category.present?
-      @recipes = Recipe.search("*", where: {category_name: category}, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
+      @recipes = category.recipes.page(page)#Recipe.search("*", where: {category_name: category}, fields: ["name^10", "description^5", "content", "creator"], page: params[:page], per_page: items_per_page)
     else
       @recipes = Recipe.all.page(page)
     end

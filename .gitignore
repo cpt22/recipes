@@ -80,3 +80,6 @@ yarn-debug.log*
 config/database.yml
 
 /config/credentials/production.key
+
+
+*.DS_Store

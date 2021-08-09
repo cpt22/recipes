@@ -35,10 +35,13 @@ gem 'kaminari'
 gem 'draper'
 gem 'cocoon'
 gem 'select2-rails'
-#gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'active_storage_validations'
 gem 'searchkick'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+gem 'docx'
+gem 'json'
 
 
 # Deployment
