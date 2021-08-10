@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_24_194716) do
+ActiveRecord::Schema.define(version: 2021_08_10_001527) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_194716) do
     t.bigint "user_id"
     t.datetime "created_at", default: -> { "current_timestamp()" }
     t.datetime "updated_at", default: -> { "current_timestamp()" }
+    t.boolean "imported", default: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
