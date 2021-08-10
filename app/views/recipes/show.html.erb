@@ -1,7 +1,7 @@
 <%=tag.div class: "block-content" do%>
   <%=tag.div class: "d-flex justify-content-end gap-2" do%>
-    <%=link_to(fa_icon("edit", class: "fa-lg"), edit_recipe_path(@recipe))if policy(@recipe).edit?%>
-    <%=link_to(fa_icon("trash", class: "fa-lg"), recipe_path(@recipe), method: :delete)if policy(@recipe).destroy?%>
+    <%=link_to(fa_icon("edit", class: "fa-lg"), edit_recipe_path(@recipe), id: :edit_link) if policy(@recipe).edit?%>
+    <%=link_to(fa_icon("trash", class: "fa-lg"), recipe_path(@recipe), id: :destroy_link, method: :delete) if policy(@recipe).destroy?%>
   <%end%>
   <%if @recipe.main_image.attached?%>
     <%=tag.div class: "post-image" do%>
@@ -41,4 +41,14 @@
       <%=@recipe.content%>
     <%end%>
   <%end%>
+<%end%>
+
+<%=javascript_tag do%>
+$("#destroy_link").on("click", function(e) {
+  var link = this;
+  e.preventDefault();
+  if (confirm("Are you sure you want to delete this recipe?")) {
+    window.location = link.href;
+  }
+});
 <%end%>

@@ -28,7 +28,7 @@
   $(".recipe-index-row").click(function(event) {
     let obj = $(event.target).closest(".recipe-index-row");
     let id = obj.data("id");
-    window.location.href = "<%=recipes_path%>/" + id;
+    window.open("<%=recipes_path%>/" + id, '_blank').focus();
   });
 
   // Enable select2 on the category search field.

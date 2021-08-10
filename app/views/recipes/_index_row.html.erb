@@ -1,6 +1,5 @@
 <%recipe = recipe.decorate%>
 <%is_image_attached = recipe.main_image.attached?%>
-<%#=tag.div class: "clean-blog-post recipe-index-row", onclick: "window.location.assign('#{recipe_path(recipe)}')", style: "cursor: pointer;" do%>
 <%=tag.div class: "clean-blog-post recipe-index-row", data: {id: recipe.id} do%>
   <%=tag.div class: "row" do%>
     <%if is_image_attached%>

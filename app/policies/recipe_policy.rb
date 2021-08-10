@@ -11,20 +11,12 @@ class RecipePolicy < ApplicationPolicy
     return standard_access?
   end
 
-  def new?
-    return create?
-  end
-
   def update?
-    return user_present? && ((user == record.user) || user.admin_access?)
-  end
-
-  def edit?
-    return update?
+    return user_present? && ((user == record.user) || user.moderator_access?)
   end
 
   def destroy?
-    return user_present? && ((user == record.user) || user.admin_access?)
+    return user_present? && ((user == record.user) || user.moderator_access?)
   end
 
   def permitted_attributes

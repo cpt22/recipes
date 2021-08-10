@@ -4,6 +4,7 @@ namespace :import do
     abort("Missing User Email") if args[:user_email].blank?
     abort("Missing File") if args[:path_to_recipe_file].blank?
 
+    puts "Importing Recipes from #{args[:path_to_recipe_file]}"
 
     doc = Docx::Document.open(args[:path_to_recipe_file])
 
@@ -22,6 +23,7 @@ namespace :import do
       # Get titles
       if html_as_string.include?("font-size:18pt")
         title = string_contents
+        title.strip!
         next if title.blank?
         current_recipe = {
           name: title,
